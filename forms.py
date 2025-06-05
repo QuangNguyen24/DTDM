@@ -1,13 +1,9 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Length
+from wtforms import StringField, TextAreaField, SubmitField
+from wtforms.validators import DataRequired, Email
 
-class LoginForm(FlaskForm):
-    username = StringField('Tên đăng nhập', validators=[DataRequired()])
-    password = PasswordField('Mật khẩu', validators=[DataRequired()])
-    submit = SubmitField('Đăng nhập')
-
-class RegisterForm(FlaskForm):
-    username = StringField('Tên đăng nhập', validators=[DataRequired(), Length(min=4, max=25)])
-    password = PasswordField('Mật khẩu', validators=[DataRequired()])
-    submit = SubmitField('Đăng ký')
+class ContactForm(FlaskForm):
+    name = StringField("Tên", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    message = TextAreaField("Nội dung", validators=[DataRequired()])
+    submit = SubmitField("Gửi")
